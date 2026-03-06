@@ -1,0 +1,28 @@
+.json-table,
+.json-table th,
+.json-table td {
+  border: 1px solid black;
+  background-color: rgb(230, 247, 250);
+}
+
+.json-table th {
+  font-size: 1rem;
+}
+
+.json-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin: 1rem auto;
+  /* display: inline-block; */
+}
+
+.json-table td,
+.json-table th {
+  padding: 1rem;
+}
+
+.json-table caption {
+  font-size: 2rem;
+  margin: 1rem;
+}

@@ -1,0 +1,23 @@
+.chart-form-group {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+  gap: 15rem;
+}
+
+.chart-form {
+  /* padding: 2rem; */
+  margin: 3rem 0;
+}
+
+.chart-form fieldset {
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.chart-form select {
+  font: inherit;
+  font-size: 15px;
+  padding: 6px;
+  border-radius: 6px;
+}
