@@ -4,16 +4,27 @@ import { checkLogIn } from "./dashboardSlice";
 
 export default function Login() {
   const dispatch = useDispatch();
-  const handleAction = (formData) => {
+  // const handleAction = (formData) => {
+  //   const username = formData.get("username");
+  //   const password = formData.get("password");
+  //   localStorage.setItem("user", JSON.stringify({ username, password }));
+  //   // console.log(localStorage);
+  //   dispatch(checkLogIn());
+  // };
+
+  const handleAction = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
     const username = formData.get("username");
     const password = formData.get("password");
     localStorage.setItem("user", JSON.stringify({ username, password }));
     // console.log(localStorage);
     dispatch(checkLogIn());
   };
+
   return (
     <div className="login-page">
-      <form action={handleAction} className="login-form">
+      <form onSubmit={handleAction} className="login-form">
         <fieldset>
           <legend>Login Information</legend>
           <div className="form-groups">

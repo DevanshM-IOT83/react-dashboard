@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addChart } from "./dashboardSlice";
 import { v4 as uuid } from "uuid";
 import "./ChartForm.css";
+import { useEffect } from "react";
 
 export default function ChartForm() {
   const data = useSelector((state) => state.dashboard.jsonData);
@@ -10,13 +11,20 @@ export default function ChartForm() {
   const chartData = useSelector((state) => state.dashboard.chartData);
   const dispatch = useDispatch();
 
-  const handleAction = (formData) => {
+  // const handleAction = (formData) => {
+  //   const formDataObj = Object.fromEntries(formData);
+  //   dispatch(addChart(formDataObj));
+  // };
+
+  const handleAction = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
     const formDataObj = Object.fromEntries(formData);
     dispatch(addChart(formDataObj));
   };
 
   return (
-    <form action={handleAction} className="chart-form">
+    <form onSubmit={handleAction} className="chart-form">
       <fieldset>
         <legend>Chart Data</legend>
         <div className="chart-form-group">
@@ -62,6 +70,8 @@ export default function ChartForm() {
             ))}
           </select>
         </div>
+        <label htmlFor="title">Title:</label>
+        <input type="text" name="title" id="title" />
 
         <button>Show Chart</button>
       </fieldset>

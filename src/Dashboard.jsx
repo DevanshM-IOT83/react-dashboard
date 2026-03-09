@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { v4 as uuid } from "uuid";
 import { useDispatch } from "react-redux";
 import { uncheckLogIn } from "./dashboardSlice";
+import { useEffect } from "react";
 
 export default function Dashboard() {
   const userName = JSON.parse(localStorage.getItem("user")).username;
@@ -27,7 +28,10 @@ export default function Dashboard() {
       </div>
 
       <JsonInput />
-      {data.length > 0 && [<Table key={uuid()} />, <ChartForm key={uuid()} />]}
+      {data.length > 0 && [
+        <Table key="table" />,
+        <ChartForm key="chart-form" />,
+      ]}
       {Object.keys(chartData).length > 0 && <ChartGraph />}
     </div>
   );
