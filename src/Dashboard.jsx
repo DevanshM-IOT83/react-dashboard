@@ -32,6 +32,15 @@ export default function Dashboard() {
       <h1>Welcome to {userName}'s Dashboard</h1>
       <div className="logout" style={{ marginBottom: "3rem" }}>
         <button onClick={handleLogOut}>LogOut</button>
+        <button
+          style={{ marginLeft: "2rem" }}
+          className="go-to-widgets"
+          onClick={() => {
+            dispatch(checkWidgets());
+          }}
+        >
+          Go to Widgets
+        </button>
       </div>
 
       <JsonInput />
@@ -39,14 +48,7 @@ export default function Dashboard() {
         <Table key="table" />,
         <ChartForm key="chart-form" />,
       ]}
-      <button
-        className="go-to-widgets"
-        onClick={() => {
-          dispatch(checkWidgets());
-        }}
-      >
-        Go to Widgets
-      </button>
+
       {Object.keys(chartData).length > 0 && <ChartGraph />}
     </div>
   );
