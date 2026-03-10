@@ -5,7 +5,11 @@ import ChartGraph from "./ChartGraph";
 import { useSelector } from "react-redux";
 import { v4 as uuid } from "uuid";
 import { useDispatch } from "react-redux";
-import { uncheckLogIn, resetDashboardState } from "./dashboardSlice";
+import {
+  uncheckLogIn,
+  resetDashboardState,
+  checkWidgets,
+} from "./dashboardSlice";
 import { resetWidgetsState } from "./widgetsSlice";
 import { useEffect } from "react";
 
@@ -35,6 +39,14 @@ export default function Dashboard() {
         <Table key="table" />,
         <ChartForm key="chart-form" />,
       ]}
+      <button
+        className="go-to-widgets"
+        onClick={() => {
+          dispatch(checkWidgets());
+        }}
+      >
+        Go to Widgets
+      </button>
       {Object.keys(chartData).length > 0 && <ChartGraph />}
     </div>
   );

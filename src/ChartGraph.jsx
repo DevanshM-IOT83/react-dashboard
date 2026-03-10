@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
 import { addWidget } from "./widgetsSlice";
-import { checkWidgets } from "./dashboardSlice";
 import {
   BarChart,
   Bar,
@@ -111,14 +110,6 @@ export default function ChartGraph() {
 
       <button className="add-graph" onClick={handleAddGraph}>
         Add Graph
-      </button>
-      <button
-        className="go-to-widgets"
-        onClick={() => {
-          dispatch(checkWidgets());
-        }}
-      >
-        Go to Widgets
       </button>
     </div>
   );

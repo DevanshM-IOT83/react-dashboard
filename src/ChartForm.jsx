@@ -71,7 +71,13 @@ export default function ChartForm() {
           </select>
         </div>
         <label htmlFor="title">Title:</label>
-        <input type="text" name="title" id="title" />
+        <input
+          type="text"
+          name="title"
+          id="title"
+          placeholder="Enter Unique Title"
+          style={{ font: "inherit" }}
+        />
 
         <button>Show Chart</button>
       </fieldset>
