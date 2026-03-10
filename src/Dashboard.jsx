@@ -5,7 +5,8 @@ import ChartGraph from "./ChartGraph";
 import { useSelector } from "react-redux";
 import { v4 as uuid } from "uuid";
 import { useDispatch } from "react-redux";
-import { uncheckLogIn } from "./dashboardSlice";
+import { uncheckLogIn, resetDashboardState } from "./dashboardSlice";
+import { resetWidgetsState } from "./widgetsSlice";
 import { useEffect } from "react";
 
 export default function Dashboard() {
@@ -17,7 +18,9 @@ export default function Dashboard() {
 
   const handleLogOut = () => {
     localStorage.clear();
-    dispatch(uncheckLogIn());
+    // dispatch(uncheckLogIn());
+    dispatch(resetDashboardState());
+    dispatch(resetWidgetsState());
   };
 
   return (

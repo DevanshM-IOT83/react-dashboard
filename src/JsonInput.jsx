@@ -21,6 +21,7 @@ export default function JsonInput() {
     try {
       const data = JSON.parse(formData.get("jsonInput"));
       dispatch(addJson(data));
+      localStorage.setItem("jsonData", JSON.stringify(data));
     } catch (err) {
       console.error(err);
     }

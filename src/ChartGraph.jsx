@@ -1,4 +1,6 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addWidget } from "./widgetsSlice";
+import { checkWidgets } from "./dashboardSlice";
 import {
   BarChart,
   Bar,
@@ -14,15 +16,29 @@ import {
 } from "recharts";
 
 export default function ChartGraph() {
-  const { xAxis, yAxis, colorPicker, chartType } = useSelector(
+  const { xAxis, yAxis, colorPicker, chartType, title } = useSelector(
     (state) => state.dashboard.chartData,
   );
   const data = [...useSelector((state) => state.dashboard.jsonData)].sort(
     (a, b) => a[xAxis] - b[xAxis],
   );
+
+  const currentPage = useSelector((state) => state.dashboard.currentPage);
+
+  const dispatch = useDispatch();
+
   const xType = typeof data[0][xAxis] === "number" ? "number" : "category";
 
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#AF19FF"];
+
+  const handleAddGraph = () => {
+    alert("Graph Added Successfully");
+    dispatch(addWidget({ xAxis, yAxis, colorPicker, chartType, title }));
+    let widgets = JSON.parse(localStorage.getItem("widgets"));
+    if (widgets === null) widgets = [];
+    widgets.push({ xAxis, yAxis, colorPicker, chartType });
+    localStorage.setItem("widgets", JSON.stringify(widgets));
+  };
 
   return (
     <div className="chart-graph">
@@ -92,6 +108,18 @@ export default function ChartGraph() {
           </PieChart>
         </div>
       )}
+
+      <button className="add-graph" onClick={handleAddGraph}>
+        Add Graph
+      </button>
+      <button
+        className="go-to-widgets"
+        onClick={() => {
+          dispatch(checkWidgets());
+        }}
+      >
+        Go to Widgets
+      </button>
     </div>
   );
 }
