@@ -28,6 +28,21 @@ export default function ChartForm() {
       <fieldset>
         <legend>Chart Data</legend>
         <div className="chart-form-group">
+          <label htmlFor="title">
+            Title:
+            <input
+              type="text"
+              name="title"
+              id="title"
+              placeholder="Enter Unique Title"
+              style={{
+                font: "inherit",
+                padding: "0.2rem",
+                marginLeft: "0.25rem",
+              }}
+              required
+            />
+          </label>
           <div className="color-picker">
             <label htmlFor="colorPicker">Pick a color: </label>
             <input
@@ -70,14 +85,6 @@ export default function ChartForm() {
             ))}
           </select>
         </div>
-        <label htmlFor="title">Title:</label>
-        <input
-          type="text"
-          name="title"
-          id="title"
-          placeholder="Enter Unique Title"
-          style={{ font: "inherit" }}
-        />
 
         <button>Show Chart</button>
       </fieldset>
