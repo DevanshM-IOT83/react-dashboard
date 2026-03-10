@@ -31,7 +31,8 @@ export default function Canvas() {
     <div id="canvas" ref={setNodeRef}>
       <h2>Drop Widgets here:</h2>
       {placedCharts.map(({ xAxis, yAxis, colorPicker, chartType, title }) => {
-        const data = [...jsonData].sort((a, b) => a[xAxis] - b[yAxis]);
+        const data = [...jsonData].sort((a, b) => a[xAxis] - b[xAxis]);
+        console.log(data, xAxis, yAxis);
         const xType =
           typeof data[0]?.[xAxis] === "number" ? "number" : "category";
         if (chartType === "bar")
