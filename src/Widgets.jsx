@@ -57,11 +57,11 @@
 
 import { useSelector, useDispatch } from "react-redux";
 import { showChildren, placeChart } from "./widgetsSlice";
-import { uncheckWidgets } from "./dashboardSlice";
 import Sidebar from "./Sidebar";
 import Canvas from "./Canvas";
-import { DndContext, pointerWithin, closestCenter } from "@dnd-kit/core";
-import TestDrop from "./TestDrop";
+import { DndContext } from "@dnd-kit/core";
+// import TestDrop from "./TestDrop";
+import { useNavigate } from "react-router-dom";
 
 export default function Widgets() {
   const showCanvasSidebar = useSelector(
@@ -69,6 +69,7 @@ export default function Widgets() {
   );
   const charts = useSelector((state) => state.widgets.charts);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleClick = () => {
     dispatch(showChildren());
   };
@@ -88,7 +89,7 @@ export default function Widgets() {
         <h1>Welcome to Widgets Page</h1>
         <button
           onClick={() => {
-            dispatch(uncheckWidgets());
+            navigate("/dashboard");
           }}
         >
           Go Back

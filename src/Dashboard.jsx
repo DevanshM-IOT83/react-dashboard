@@ -5,18 +5,15 @@ import ChartGraph from "./ChartGraph";
 import { useSelector } from "react-redux";
 import { v4 as uuid } from "uuid";
 import { useDispatch } from "react-redux";
-import {
-  uncheckLogIn,
-  resetDashboardState,
-  checkWidgets,
-} from "./dashboardSlice";
+import { resetDashboardState } from "./dashboardSlice";
 import { resetWidgetsState } from "./widgetsSlice";
-import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
   const userName = JSON.parse(localStorage.getItem("user")).username;
   const data = useSelector((state) => state.dashboard.jsonData);
   const chartData = useSelector((state) => state.dashboard.chartData);
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -25,6 +22,7 @@ export default function Dashboard() {
     // dispatch(uncheckLogIn());
     dispatch(resetDashboardState());
     dispatch(resetWidgetsState());
+    navigate("/login");
   };
 
   return (
@@ -36,7 +34,7 @@ export default function Dashboard() {
           style={{ marginLeft: "2rem" }}
           className="go-to-widgets"
           onClick={() => {
-            dispatch(checkWidgets());
+            navigate("/widgets");
           }}
         >
           Go to Widgets
